@@ -83,6 +83,16 @@ for p in possible_frontends:
 if not FRONTEND_PATH:
     logger.info("No frontend directory found; static files will not be served.")
 
+
+@app.on_event("startup")
+def startup_check_frontend():
+    if FRONTEND_PATH:
+        try:
+            files = os.listdir(FRONTEND_PATH)
+            logger.info(f"Frontend files: {files[:50]}")
+        except Exception as e:
+            logger.warning(f"Unable to list frontend directory: {e}")
+
 # ── Root ──
 @app.get("/", include_in_schema=False)
 def root():
