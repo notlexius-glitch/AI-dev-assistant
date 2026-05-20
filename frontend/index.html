@@ -2181,14 +2181,25 @@
 
     <!-- ── FOOTER ─────────────────────────────────────────────────── -->
     <footer>
-      <div class="app">
-        <div class="footer-logo">QyverixAI</div>
-        <p>
-          <a href="https://github.com/imDarshanGK/AI-dev-assistant" target="_blank">GitHub</a>
-          · <a href="https://qyverixai.onrender.com/docs" target="_blank">API Docs</a>
-          · MIT License
-        </p>
-        <p style="margin-top:8px;font-size:0.75rem">Built for the open source community</p>
+      <div class="app" style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="footer-logo">QyverixAI</div>
+          <p>
+            <a href="https://github.com/imDarshanGK/AI-dev-assistant" target="_blank">GitHub</a>
+            · <a href="https://qyverixai.onrender.com/docs" target="_blank">API Docs</a>
+            · MIT License
+          </p>
+          <p style="font-size:0.75rem">Built for the open source community</p>
+        </div>
+        <div style="max-width:320px;">
+          <p style="margin:0 0 6px;font-size:0.8rem;font-weight:600;color:var(--accent);">Weekly Digest</p>
+          <form id="digestForm" style="display:flex;gap:6px;">
+            <input type="email" id="digestEmail" placeholder="your@email.com" required
+                   style="flex:1;min-width:180px;padding:7px 10px;font-size:0.8rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--fg);">
+            <button type="submit" id="digestBtn" style="padding:7px 14px;font-size:0.8rem;font-weight:600;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;">Subscribe</button>
+          </form>
+          <p style="margin:6px 0 0;font-size:0.7rem;color:var(--muted);">Get a Sunday email with your weekly analysis stats.</p>
+        </div>
       </div>
     </footer>
 
@@ -3061,6 +3072,37 @@ int main() {
       });
       const savedUrl = localStorage.getItem('qyx_apiUrl');
       if (savedUrl) apiUrlInput.value = savedUrl;
+
+      /* ═══════════════════════════════════════════════════════════════
+         DIGEST SUBSCRIBE
+      ═══════════════════════════════════════════════════════════════ */
+      document.getElementById('digestForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('digestEmail').value.trim();
+        const btn = document.getElementById('digestBtn');
+        btn.disabled = true;
+        btn.textContent = 'Subscribing…';
+        const base = apiUrlInput.value.replace(/\/$/, '');
+        try {
+          const r = await fetch(`${base}/subscribe/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          const data = await r.json();
+          if (r.ok) {
+            toast(data.message, 'success');
+            document.getElementById('digestEmail').value = '';
+          } else {
+            toast(data.detail || 'Subscription failed', 'error');
+          }
+        } catch {
+          toast('Could not reach the server.', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Subscribe';
+        }
+      });
     </script>
 </body>
 
