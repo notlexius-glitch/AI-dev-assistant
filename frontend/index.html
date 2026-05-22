@@ -2035,31 +2035,6 @@
         font-size: 0.98rem
       }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   EDITOR
-═══════════════════════════════════════════════════════════════ */
-function updateEditor() {
-    const val = editor.value;
-    const lines = val ? val.split('\n').length : 0;
-    const chars = val.length;
-    const nonBlank = val ? val.split('\n').filter(l => l.trim()).length : 0;
-
-    if (charCount) {
-        charCount.textContent = val 
-            ? `${chars.toLocaleString()} chars · ${lines} lines · ${nonBlank} non-blank`
-            : 'Paste or type code to begin';
-    }
-
-    const lineCount = Math.max(lines, 1);
-    if (lineNumbers) {
-        lineNumbers.innerHTML = val 
-            ? Array.from({length: lineCount}, (_, i) => i + 1).join('<br>')
-            : '1';
-    }
-}
-// Tab key support
-editor.addEventListener('keydown', e => {
       .features-row {
         gap: 8px;
         padding: 16px 0 40px
