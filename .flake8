@@ -2,5 +2,5 @@
 max-line-length = 120
 extend-ignore = E203, E501
 per-file-ignores =
-    backend/tests/*: E401,E402,F841,W293
-    tests/*: E401,E402,F841,W293
+    backend/tests/*: E401,E402,F841,W293,E741
+    tests/*: E401,E402,F841,W293,E741
