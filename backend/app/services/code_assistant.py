@@ -533,7 +533,7 @@ BUG_PATTERNS: list[BugPattern] = [
     ),
     BugPattern(
         "Missing Semicolon",
-        r"^(?!.*\b(if|for|while|switch|catch)\b)(?!.*[{}#])(?!^\s*(int|float|double|char|long|short|bool|string|void)\s+\w+\s*\([^)]*\)\s*$).*\b(cout|cin|return|int|float|double|char|long|short|bool|string)\b[^;]*[^\s;]\s*$",
+        r"^(?!.*\b(if|for|while|switch|catch)\b)(?!.*[{}#])(?!^\s*(int|float|double|char|long|short|bool|string|void)\s+\w+\s*\([^)]*\)\s*$).*\b(cout|cin|return|int|float|double|char|long|short|bool|string)\b[^;]*[^\s;]\s*$",  # noqa: E501
         "Missing semicolon at the end of the statement.",
         "Add a semicolon `;` at the end of the line.",
         "error",
@@ -848,7 +848,7 @@ def run_suggestions(code: str, language: str) -> dict:
                 "code_context": (
                     format_code_snippet(code, sample_lines) if sample_lines else None
                 ),
-                "example": '"""Calculate the area of a circle given radius r."""',
+                "example": '"""Calculate the area of a circle given radius r."""',  # noqa: E501
                 "priority": "medium",
             }
         )
@@ -870,7 +870,7 @@ def run_suggestions(code: str, language: str) -> dict:
                     "code_context": format_code_snippet(
                         code, [func["start_line"], func["end_line"]]
                     ),
-                    "example": "def parse_input(raw): ...\ndef validate(data): ...\ndef process(validated): ...",
+                    "example": "def parse_input(raw): ...\ndef validate(data): ...\ndef process(validated): ...",  # noqa: E501
                     "priority": "high",
                 }
             )
@@ -892,7 +892,7 @@ def run_suggestions(code: str, language: str) -> dict:
                 "line_number": magic_lines[0],
                 "line_range": sample_magic_lines,
                 "code_context": format_code_snippet(code, sample_magic_lines),
-                "example": "MAX_RETRIES = 5\nTIMEOUT_SECONDS = 30",
+                "example": "MAX_RETRIES = 5\nTIMEOUT_SECONDS = 30",  # noqa: E501
                 "priority": "medium",
             }
         )
@@ -922,7 +922,7 @@ def run_suggestions(code: str, language: str) -> dict:
                     "line_number": risky_lines[0],
                     "line_range": sample_risky,
                     "code_context": format_code_snippet(code, sample_risky),
-                    "example": "try:\n    data = json.loads(raw)\nexcept json.JSONDecodeError as e:\n    logger.error('Bad JSON: %s', e)",
+                    "example": "try:\n    data = json.loads(raw)\nexcept json.JSONDecodeError as e:\n    logger.error('Bad JSON: %s', e)",  # noqa: E501
                     "priority": "high",
                 }
             )
@@ -951,7 +951,7 @@ def run_suggestions(code: str, language: str) -> dict:
                         if func_def_lines
                         else None
                     ),
-                    "example": "def greet(name: str, age: int) -> str:\n    return f'Hello {name}, age {age}'",
+                    "example": "def greet(name: str, age: int) -> str:\n    return f'Hello {name}, age {age}'",  # noqa: E501
                     "priority": "medium",
                 }
             )
@@ -967,7 +967,7 @@ def run_suggestions(code: str, language: str) -> dict:
                 "line_number": None,
                 "line_range": None,
                 "code_context": None,
-                "example": "def test_add():\n    assert add(2, 3) == 5\n    assert add(-1, 1) == 0",
+                "example": "def test_add():\n    assert add(2, 3) == 5\n    assert add(-1, 1) == 0",  # noqa: E501
                 "priority": "high",
             }
         )
@@ -987,7 +987,7 @@ def run_suggestions(code: str, language: str) -> dict:
                 "line_number": print_lines[0],
                 "line_range": sample_print,
                 "code_context": format_code_snippet(code, sample_print),
-                "example": "import logging\nlogger = logging.getLogger(__name__)\nlogger.info('Processing %d items', n)",
+                "example": "import logging\nlogger = logging.getLogger(__name__)\nlogger.info('Processing %d items', n)",  # noqa: E501
                 "priority": "medium",
             }
         )
@@ -1008,7 +1008,7 @@ def run_suggestions(code: str, language: str) -> dict:
                     "line_number": env_lines[0],
                     "line_range": sample_env,
                     "code_context": format_code_snippet(code, sample_env),
-                    "example": "import { z } from 'zod';\nconst env = z.object({ PORT: z.string() }).parse(process.env);",
+                    "example": "import { z } from 'zod';\nconst env = z.object({ PORT: z.string() }).parse(process.env);",  # noqa: E501
                     "priority": "medium",
                 }
             )
