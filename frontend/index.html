@@ -588,14 +588,6 @@
       gap: 8px;
     }
 
-    .panel-title span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: blink 2s infinite;
-    }
-
     .panel-actions {
       display: flex;
       gap: 6px
@@ -2156,6 +2148,7 @@
           <div class="line-numbers" id="lineNumbers" aria-hidden="true">1</div>
           <textarea id="codeEditor" placeholder="# Paste your code here or click 'Try Sample Code' above…"
             spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off" aria-label="Code Editor"></textarea>
+<body id="top">
   <div class="bg-orb bg-orb-1"></div>
   <div class="bg-orb bg-orb-2"></div>
 
@@ -2163,7 +2156,7 @@
 
     <!-- ── NAV ──────────────────────────────────────────────────── -->
     <nav>
-      <a href="#" class="nav-logo">
+      <a href="#top" class="nav-logo">
         <div class="logo-hex">Q</div>
         QyverixAI
         <span
@@ -3079,8 +3072,30 @@
         return /<\s*html|<\s*style|<\s*script|function\s+updateEditor\s*\(|\.stat-bar|\.hero\s*\{|\.workspace\s*\{/i.test(text);
       }
 
+      const DEFAULT_API_BASE = 'https://qyverixai.onrender.com';
+
+      function getHostname(url) {
+        try {
+          return new URL(url).hostname;
+        } catch {
+          return '';
+        }
+      }
+
+      function isLocalHostName(hostname) {
+        return hostname === 'localhost' || hostname === '127.0.0.1';
+      }
+
+      function isLocalApiUrl(url) {
+        return isLocalHostName(getHostname(url));
+      }
+
       function getApiBase() {
-        return ((apiUrlInput && apiUrlInput.value) || localStorage.getItem('qyx_apiUrl') || 'http://localhost:8000').replace(/\/$/, '');
+        const candidate = ((apiUrlInput && apiUrlInput.value) || localStorage.getItem('qyx_apiUrl') || DEFAULT_API_BASE).replace(/\/$/, '');
+        if (window.location.protocol === 'file:' && isLocalApiUrl(candidate)) {
+          return DEFAULT_API_BASE;
+        }
+        return candidate;
       }
 
       function isNetworkFetchFailure(err) {
@@ -4421,7 +4436,11 @@ int main() {
           localStorage.setItem('qyx_apiUrl', apiUrlInput.value);
         });
         const savedUrl = localStorage.getItem('qyx_apiUrl');
-        if (savedUrl) apiUrlInput.value = savedUrl;
+        if (savedUrl && !(window.location.protocol === 'file:' && isLocalApiUrl(savedUrl))) {
+          apiUrlInput.value = savedUrl;
+        } else {
+          apiUrlInput.value = DEFAULT_API_BASE;
+        }
       }
 
       /* DIGEST SUBSCRIBE */
