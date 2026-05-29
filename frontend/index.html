@@ -1948,18 +1948,20 @@
         <span></span>
         Code Editor
       </div>
-      <div class="panel-actions">
-        <label class="icon-btn" title="Upload file" style="cursor:pointer" tabindex="0" role="button" aria-label="Upload code file" ...> onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); document.getElementById('fileInput').click();}">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <input type="file" id="pillFileInput" accept=".py,.js,.ts,.java,.cpp,.txt" style="display: none;" tabindex="-1" />
-        <button class="icon-btn" id="clearBtn" title="Clear" aria-label="Clear code editor">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
-        </button>
-        <button class="icon-btn" id="copyBtn" title="Copy code" aria-label="Copy code to clipboard">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </button>
-      </div>
-    </div>
+     <div class="panel-actions">
+    <button class="icon-btn" title="Upload file" aria-label="Upload file" style="cursor: pointer;" tabindex="0">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+    </button>
+    <input type="file" id="pillFileInput" accept=".py,.js,.ts,.java,.cpp,.txt" style="display: none;" tabindex="-1" />
+
+    <button class="icon-btn" id="clearBtn" title="Clear" aria-label="Clear code editor">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v3M4 7h16"/>
+        </svg>
+    </button>
+</div>
 
     <!-- Language tabs -->
     <div class="lang-tabs" role="tablist" aria-label="Select Programming Language">
