@@ -2021,7 +2021,7 @@
       <span>API Docs</span>
     </a>
     <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle theme" aria-pressed="false">
-      <svg id="themeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="themeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
   </div>
 </nav>
@@ -2064,7 +2064,7 @@
     Paste your code and get instant bug detection, plain-English explanations, and actionable improvement suggestions — no account needed.
   </p>
   <div class="hero-cta">
-    <button class="btn btn-primary" onclick="document.getElementById('workspace').scrollIntoView({behavior:'smooth'})">
+    <button class="btn btn-primary" onclick="document.querySelector('.workspace').scrollIntoView()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5,3 19,12 5,21"/></svg>
       Start Analyzing
     </button>
@@ -3419,7 +3419,7 @@
       /* ═══════════════════════════════════════════════════════════════
          CLEAR / COPY
       ═══════════════════════════════════════════════════════════════ */
-      document.getElementById('clearBtn').addEventListener('click', () => {
+      document.querySelector('.clearBtn').addEventListener('click', () => {
         editor.value = '';
         updateEditor();
         resetResults();
