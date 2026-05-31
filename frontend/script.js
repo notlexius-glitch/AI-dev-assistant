@@ -107,7 +107,7 @@ const fileInput = document.querySelector('.fileInput');
     codeInput.dispatchEvent(new Event('input'));
   };
   reader.readAsText(file);
-});
+;
 
 // ── Clear ──
 document.querySelector('.clearBtn').addEventListener('click', () => {
